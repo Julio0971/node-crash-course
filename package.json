@@ -1,0 +1,25 @@
+{
+    "name": "node-crash-course",
+    "version": "1.0.0",
+    "description": "Curso de Node.js + Express + MongoDB",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Julio0971/node-crash-course.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Julio0971/node-crash-course/issues"
+    },
+    "homepage": "https://github.com/Julio0971/node-crash-course#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "lodash": "^4.17.20"
+    }
+}
