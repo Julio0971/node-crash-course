@@ -3,23 +3,40 @@ const express = require('express')
 // Express app
 const app = express()
 
+// Register view engine
+app.set('view engine', 'ejs')
+
 // Listen for requests
 app.listen(3000)
 
 app.get('/', (req, res) => {
-    res.sendFile('./views/index.html', { root: __dirname })
+    const blogs = [
+        {
+            title: 'Blog 1',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper massa eget felis cursus mollis. Aliquam convallis egestas tincidunt.'
+        },
+        {
+            title: 'Blog 2',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper massa eget felis cursus mollis. Aliquam convallis egestas tincidunt.'
+        },
+        {
+            title: 'Blog 3',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper massa eget felis cursus mollis. Aliquam convallis egestas tincidunt.'
+        }
+    ]
+
+    res.render('index', { title: 'Inicio', blogs })
 })
 
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname })
+    res.render('about', { title: 'Acerca' })
 })
 
-// Redirects
-app.get('/about-us', (req, res) => {
-    res.redirect('/about')
+app.get('/blogs/create', (req, res) => {
+    res.render('create', { title: 'Crear un blog' })
 })
 
 // 404
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', { root: __dirname })
+    res.status(404).render('404', { title: 'Página no encontrada' })
 })
