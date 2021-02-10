@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="section">
+        <div class="container has-text-centered">
+            <h3 class="title">
+                <%= blog.title %>
+            </h3>
+
+            <h5 class="subtitle">
+                <%= blog.snippet %>
+            </h5>
+
+            <div class="block">
+                <%= blog.body %>
+            </div>
+
+            <div class="control">
+                <button type="button" class="button is-danger" data-doc="<%= blog.id %>">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script>
+        const trash = document.querySelector('button.is-danger')
+
+        trash.addEventListener('click', e => {
+            const endpoint = `/blogs/${trash.dataset.doc}`
+            
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => window.location.href = data.redirect)
+            .catch(error => console.log(error))
+        })
+    </script>
+</body>
+
+</html>
